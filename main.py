@@ -4,10 +4,9 @@ from aiogram.exceptions import (
     TelegramNetworkError,
     TelegramUnauthorizedError,
 )
-from aiogram.types import sticker
-
 from config.settings import BOT_TOKEN
-from handlers.users import contact
+from handlers.users import contact,reklama_ochir
+from handlers.users import contact, new_chat_members
 from handlers.users.test import rt as test
 from handlers.users.start import rt as start
 from handlers.users.help import rt as help
@@ -26,28 +25,33 @@ from handlers.users.document import rt as document
 from handlers.users.sticer import rt as sticer
 from handlers.users.dice import rt as dice
 from handlers.users.location import rt as location
+from handlers.users.new_chat_members import router as new_chat_members
+from handlers.users.delete_chat_photo import router as delete_chat_photo
 
 dp = Dispatcher()
 async def main():
     bot = Bot(BOT_TOKEN)
-    dp.include_router(start)
-    dp.include_router(help)
-    dp.include_router(location)
-    dp.include_router(dice)
-    dp.include_router(sticker)
-    dp.include_router(document)
-    dp.include_router(text)
-    dp.include_router(contact)
-    dp.include_router(animation)
-    dp.include_router(voice)
-    dp.include_router(photo)
-    dp.include_router(date)
+    # dp.include_router(start)
+    # dp.include_router(help)
+    dp.include_router(reklama_ochir)
+    dp.include_router(delete_chat_photo)
+    dp.include_router(new_chat_members)
+    # dp.include_router(location)
+    # dp.include_router(dice)
+    # dp.include_router(sticer)
+    # dp.include_router(document)
+    # dp.include_router(text)
+    # dp.include_router(contact)
+    # dp.include_router(animation)
+    # dp.include_router(voice)
+    # dp.include_router(photo)
+    # dp.include_router(date)
     # dp.include_router(aniqla)
-    dp.include_router(delete)
-    dp.include_router(reply)
-    dp.include_router(id_korish)
-    dp.include_router(rasm)
-    dp.include_router(test)
+    # dp.include_router(delete)
+    # dp.include_router(reply)
+    # dp.include_router(id_korish)
+    # dp.include_router(rasm)
+    # dp.include_router(test)
     await dp.start_polling(bot)
 if __name__ == "__main__":
     try:
